@@ -30,9 +30,9 @@ namespace VegafoodWebAPI.Controllers
 
         // GET: api/OrderDetails/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderDetails>> GetOrderDetails(int id)
+        public async Task<ActionResult<IEnumerable<OrderDetails>>> GetOrderDetails(int id)
         {
-            var orderDetails = await _context.OrderDetails.Where(ord => ord.OrderId == id).FirstOrDefaultAsync();
+            var orderDetails = await _context.OrderDetails.Where(ord => ord.OrderId == id).ToListAsync();
 
             if (orderDetails == null)
             {
